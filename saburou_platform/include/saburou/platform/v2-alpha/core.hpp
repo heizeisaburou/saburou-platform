@@ -15,12 +15,12 @@
 
 // SABUROU_MSG(SABUROU_STRINGIFY(__cplusplus))
 /** @brief Minimum C++ standard required for this version. */
-#define SABUROU_PLATFORM_MIN_CPP_VER 202302L
-#define SABUROU_PLATFORM_MIN_CPP_NAME "C++23"
+#define SABUROU_PLATFORM_V2_ALPHA_MIN_CPP_VER 202302L
+#define SABUROU_PLATFORM_V2_ALPHA_MIN_CPP_NAME "C++23"
 #include <saburou/macros/cppxx_guard.hpp> // IWYU pragma: keep
 
 // Necessary environment cleanup (undefining linux, unix, etc.)
-#include <saburou/platform/v1/env/cleanup.hpp> // IWYU pragma: keep
+#include <saburou/platform/v2-alpha/env/cleanup.hpp> // IWYU pragma: keep
 
 // Pragma utility for diagnostic reporting
 #include <saburou/macros/pragma.hpp> // IWYU pragma: keep
