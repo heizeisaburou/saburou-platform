@@ -16,15 +16,25 @@ de usuario limpia, fuertemente tipada y lista para `std::format`.
 Puedes integrar la librería directamente en tu `CMakeLists.txt` sin instalar nada en el sistema:
 
 ```cmake
+cmake_minimum_required(VERSION 3.21)
+project(cpp_workspace CXX)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 include(FetchContent)
 FetchContent_Declare(
     saburou-platform
-    GIT_REPOSITORY [https://github.com/tu-usuario/saburou-platform.git](https://github.com/tu-usuario/saburou-platform.git)
+    GIT_REPOSITORY https://github.com/heizeisaburou/saburou-platform.git
     GIT_TAG main
 )
 FetchContent_MakeAvailable(saburou-platform)
 
-target_link_libraries(tu_proyecto PRIVATE saburou::platform)
+add_executable(sample_app sample_app/src/main.cpp)
+
+target_include_directories(sample_app PRIVATE sample_app/include)
+
+target_link_libraries(sample_app PRIVATE saburou::platform)
 ```
 
 ### Opción B: Instalación en el Sistema (Linux/macOS/Windows)

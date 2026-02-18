@@ -13,21 +13,21 @@
 #include <saburou/macros/pragma.hpp>
 
 // Example Input
-// #define SABUROU_PLATFORM_V1_CORE_REVISION_LOCAL 1
+// #define SABUROU_PLATFORM_CORE_REVISION_LOCAL 1
 
-#ifndef SABUROU_PLATFORM_V1_CORE_REVISION_LOCAL
+#ifndef SABUROU_PLATFORM_CORE_REVISION_LOCAL
     #error "[!] Saburou: CORE_REVISION_LOCAL must be defined before invoking core_guard.hpp"
 #endif
 
-#ifdef SABUROU_PLATFORM_V1_CORE_REVISION
-    #if SABUROU_PLATFORM_V1_CORE_REVISION != SABUROU_PLATFORM_V1_CORE_REVISION_LOCAL
+#ifdef SABUROU_PLATFORM_CORE_REVISION
+    #if SABUROU_PLATFORM_CORE_REVISION != SABUROU_PLATFORM_CORE_REVISION_LOCAL
         SABUROU_MSG(
-            "[!] ERROR: Core revision inconsistency detected in SABUROU_PLATFORM_V1.\n" \
-            "- Revision in use: " SABUROU_STRINGIFY(SABUROU_PLATFORM_V1_CORE_REVISION) "\n" \
-            "- Revision required: " SABUROU_STRINGIFY(SABUROU_PLATFORM_V1_CORE_REVISION_LOCAL)
+            "[!] ERROR: Core revision inconsistency detected in SABUROU_PLATFORM.\n" \
+            "- Revision in use: " SABUROU_STRINGIFY(SABUROU_PLATFORM_CORE_REVISION) "\n" \
+            "- Revision required: " SABUROU_STRINGIFY(SABUROU_PLATFORM_CORE_REVISION_LOCAL)
         )
-        #error "[!] SABUROU_PLATFORM_V1: Core revision mismatch detected in global namespace."
+        #error "[!] SABUROU_PLATFORM: Core revision mismatch detected in global namespace."
     #endif
 #endif
 
-#undef SABUROU_PLATFORM_V1_CORE_REVISION_LOCAL
+#undef SABUROU_PLATFORM_CORE_REVISION_LOCAL

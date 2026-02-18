@@ -10,7 +10,7 @@
 
 // Guards
 /** @brief Local revision identifier used by core_guard to verify binary compatibility. */
-#define SABUROU_PLATFORM_V1_CORE_REVISION_LOCAL 1
+#define SABUROU_PLATFORM_CORE_REVISION_LOCAL 1
 #include <saburou/platform/detail/gen1/core_guard.hpp> // IWYU pragma: keep
 
 // SABUROU_MSG(SABUROU_STRINGIFY(__cplusplus))
