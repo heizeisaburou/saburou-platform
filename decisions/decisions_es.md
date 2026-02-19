@@ -14,6 +14,10 @@ Wed 2026-02-18 12:30:44 v1
 
 - **Decisión**: Cada versión mayor de la API reside en su propia carpeta física (ej. `v1/`) con su respectivo
   archivo paraguas (`v1.hpp`).
+- **Evolución de API**: Cualquier cambio que rompa la compatibilidad hacia atrás o modifique la interfaz
+  pública obliga a la creación de una nueva versión mayor (ej. de v2/ a v3/), generando una nueva carpeta, un
+  nuevo archivo paraguas y un nuevo namespace. Nunca se rompe la API dentro de una carpeta de versión
+  existente.
 - **Sincronización**: Si el comportamiento interno cambia pero la API se mantiene, se incrementa la macro
   `SABUROU_PLATFORM_VX_CORE_REVISION`.
 - **Protección**: Se utilizan centinelas de revisión que disparan un `#error` si se intentan mezclar diferentes

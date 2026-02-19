@@ -37,7 +37,6 @@ if(PROJECT_IS_TOP_LEVEL)
     
     file(GLOB_RECURSE TEST_SOURCES CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/saburou_platform/src/*.cpp"
-        "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
     )
 
     if(TEST_SOURCES)

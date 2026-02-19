@@ -5,20 +5,20 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/os/info/types.hpp>
+#include <saburou/platform/v2/os/info/types.hpp>
 
 #include <sys/utsname.h>
 
-namespace saburou::platform::v2_alpha::os::posix {
+namespace saburou::platform::v2::os::posix {
 
 /**
  * @brief Retrieves kernel information using the POSIX uname system call.
  * @return An info_t struct populated with version numbers and the raw release string.
  * @note This implementation parses the release string to extract major, minor, and patch versions.
  */
-inline saburou::platform::v2_alpha::os::info_t info() {
+inline saburou::platform::v2::os::info_t info() {
     utsname buffer;
-    saburou::platform::v2_alpha::os::info_t info{};
+    saburou::platform::v2::os::info_t info{};
 
     if (uname(&buffer) == 0) {
         // Parse the first three version numbers from the release string
@@ -28,4 +28,4 @@ inline saburou::platform::v2_alpha::os::info_t info() {
     return info;
 }
 
-} // namespace saburou::platform::v2_alpha::os::posix
+} // namespace saburou::platform::v2::os::posix

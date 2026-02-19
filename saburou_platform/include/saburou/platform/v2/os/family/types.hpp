@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/core.hpp>
+#include <saburou/platform/v2/core.hpp>
 
 #include <cstdint>
 
-namespace saburou::platform::v2_alpha::os {
+namespace saburou::platform::v2::os {
 
 /**
  * @brief Categorizes operating systems into logical families.
@@ -27,4 +27,4 @@ enum class family_t : uint8_t {
     unknown  // Fallback for undetected systems
 };
 
-} // namespace saburou::platform::v2_alpha::os
+} // namespace saburou::platform::v2::os

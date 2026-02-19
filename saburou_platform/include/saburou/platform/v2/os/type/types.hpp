@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/core.hpp>
+#include <saburou/platform/v2/core.hpp>
 
 #include <cstdint>
 
-namespace saburou::platform::v2_alpha::os {
+namespace saburou::platform::v2::os {
 
 /**
  * @brief Explicit operating system types.
@@ -32,4 +32,4 @@ enum class type_t : uint16_t {
     unknown
 };
 
-} // namespace saburou::platform::v2_alpha::os
+} // namespace saburou::platform::v2::os

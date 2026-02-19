@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/detect.hpp>
-#include <saburou/platform/v2-alpha/os/type/types.hpp>
+#include <saburou/platform/v2/detect.hpp>
+#include <saburou/platform/v2/os/type/types.hpp>
 
 #include <format>
 
-namespace saburou::platform::v2_alpha::os {
+namespace saburou::platform::v2::os {
 
 /**
  * @brief Returns the specific operating system type at compile-time.
@@ -18,29 +18,29 @@ namespace saburou::platform::v2_alpha::os {
  */
 [[nodiscard]] consteval type_t type() {
     // Ordering matters: Android must be checked before generic Linux.
-#if defined(SABUROU_PLATFORM_V2_ALPHA_OS_WINDOWS)
+#if defined(SABUROU_PLATFORM_V2_OS_WINDOWS)
     return type_t::windows;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_IOS_SIMULATOR)
+#elif defined(SABUROU_PLATFORM_V2_OS_IOS_SIMULATOR)
     return type_t::ios_simulator;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_IOS)
+#elif defined(SABUROU_PLATFORM_V2_OS_IOS)
     return type_t::ios;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_MACOS)
+#elif defined(SABUROU_PLATFORM_V2_OS_MACOS)
     return type_t::macos;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_ANDROID)
+#elif defined(SABUROU_PLATFORM_V2_OS_ANDROID)
     return type_t::android;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_LINUX)
+#elif defined(SABUROU_PLATFORM_V2_OS_LINUX)
     return type_t::linux;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_FREEBSD)
+#elif defined(SABUROU_PLATFORM_V2_OS_FREEBSD)
     return type_t::freebsd;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_NETBSD)
+#elif defined(SABUROU_PLATFORM_V2_OS_NETBSD)
     return type_t::netbsd;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_OPENBSD)
+#elif defined(SABUROU_PLATFORM_V2_OS_OPENBSD)
     return type_t::openbsd;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_DRAGONFLY)
+#elif defined(SABUROU_PLATFORM_V2_OS_DRAGONFLY)
     return type_t::dragonfly;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_WASM_EMSCRIPTEN)
+#elif defined(SABUROU_PLATFORM_V2_OS_WASM_EMSCRIPTEN)
     return type_t::emscripten;
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_WASM_WASI)
+#elif defined(SABUROU_PLATFORM_V2_OS_WASM_WASI)
     return type_t::wasi;
 #else
     return type_t::unknown;
@@ -100,14 +100,14 @@ namespace saburou::platform::v2_alpha::os {
  */
 [[nodiscard]] consteval const char *name() { return to_name(type()); }
 
-} // namespace saburou::platform::v2_alpha::os
+} // namespace saburou::platform::v2::os
 
 /**
  * @brief std::formatter specialization for type_t.
  * Supported format specifiers: {} or {:s} for technical lowercase name, {:r} for qualified representation (e.g., "type_t::linux").
  * @note Use to_name for a human-readable representation (e.g., "macOS").
  */
-template <> struct std::formatter<saburou::platform::v2_alpha::os::type_t> {
+template <> struct std::formatter<saburou::platform::v2::os::type_t> {
     bool repr = false;
     constexpr auto parse(std::format_parse_context &ctx) {
         auto it = ctx.begin(), end = ctx.end();
@@ -118,8 +118,8 @@ template <> struct std::formatter<saburou::platform::v2_alpha::os::type_t> {
         return it;
     }
 
-    auto format(const saburou::platform::v2_alpha::os::type_t &t, std::format_context &ctx) const {
-        auto name = saburou::platform::v2_alpha::os::to_code_name(t);
+    auto format(const saburou::platform::v2::os::type_t &t, std::format_context &ctx) const {
+        auto name = saburou::platform::v2::os::to_code_name(t);
         return repr ? std::format_to(ctx.out(), "type_t::{}", name) : std::format_to(ctx.out(), "{}", name);
     }
 };

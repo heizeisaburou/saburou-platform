@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/os/linux/types.hpp>
+#include <saburou/platform/v2/os/linux/types.hpp>
 
 #include <fstream>
 
-namespace saburou::platform::v2_alpha::os::linux {
+namespace saburou::platform::v2::os::linux {
 
 /**
  * @brief Parses the /etc/os-release file to retrieve Linux distribution metadata.
@@ -51,4 +51,4 @@ inline distro_info_t distro_info() {
     return info;
 }
 
-} // namespace saburou::platform::v2_alpha::os::linux
+} // namespace saburou::platform::v2::os::linux

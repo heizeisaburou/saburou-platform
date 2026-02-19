@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/core.hpp>
+#include <saburou/platform/v2/core.hpp>
 
 #include <format>
 #include <string>
 
-namespace saburou::platform::v2_alpha::os::linux {
+namespace saburou::platform::v2::os::linux {
 
 /**
  * @brief Data structure representing Linux distribution metadata.
@@ -23,14 +23,14 @@ struct distro_info_t {
     std::string build_id;            ///< Build specific identifier (e.g., "rolling")
 };
 
-} // namespace saburou::platform::v2_alpha::os::linux
+} // namespace saburou::platform::v2::os::linux
 
 /**
  * @brief std::formatter specialization for distro_info_t.
  * Supported format specifiers: {} or {:s} for filtered output (omits empty fields), 
  * {:r} for full technical representation.
  */
-template <> struct std::formatter<saburou::platform::v2_alpha::os::linux::distro_info_t> {
+template <> struct std::formatter<saburou::platform::v2::os::linux::distro_info_t> {
     bool repr = false;
 
     constexpr auto parse(std::format_parse_context &ctx) {
@@ -44,7 +44,7 @@ template <> struct std::formatter<saburou::platform::v2_alpha::os::linux::distro
         return ++it;
     }
 
-    auto format(const saburou::platform::v2_alpha::os::linux::distro_info_t &info, std::format_context &ctx) const {
+    auto format(const saburou::platform::v2::os::linux::distro_info_t &info, std::format_context &ctx) const {
         if (repr) {
             return std::format_to(ctx.out(), "distro_info(id={}, name={}, version={}, build_id={})", 
                                   info.id, info.name, info.version, info.build_id);

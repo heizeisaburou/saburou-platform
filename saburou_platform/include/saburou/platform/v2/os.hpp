@@ -9,6 +9,6 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/os/family.hpp> // IWYU pragma: export
-#include <saburou/platform/v2-alpha/os/info.hpp>   // IWYU pragma: export
-#include <saburou/platform/v2-alpha/os/type.hpp>   // IWYU pragma: export
+#include <saburou/platform/v2/os/family.hpp> // IWYU pragma: export
+#include <saburou/platform/v2/os/info.hpp>   // IWYU pragma: export
+#include <saburou/platform/v2/os/type.hpp>   // IWYU pragma: export

@@ -1,6 +1,6 @@
 /**
  * @file core.hpp
- * @brief Initialization and validation core for saburou-platform v1.
+ * @brief Initialization and validation core for saburou-platform.
  * * This header acts as the primary configuration layer. It enforces C++ standard 
  * requirements, validates core revision integrity to prevent ODR violations, 
  * and sanitizes the global environment by removing conflicting legacy macros.
@@ -20,7 +20,7 @@
 #include <saburou/detail/macros/cppxx_guard.hpp> // IWYU pragma: keep
 
 // Necessary environment cleanup (undefining linux, unix, etc.)
-#include <saburou/platform/v2-alpha/env/cleanup.hpp> // IWYU pragma: keep
+#include <saburou/platform/v2/env/cleanup.hpp> // IWYU pragma: keep
 
 // Pragma utility for diagnostic reporting
 #include <saburou/detail/macros/pragma.hpp> // IWYU pragma: keep

@@ -1,8 +1,8 @@
 /**
  * @file core.hpp
  * @brief Initialization and validation core for saburou-platform v1.
- * * This header acts as the primary configuration layer. It enforces C++ standard 
- * requirements, validates core revision integrity to prevent ODR violations, 
+ * * This header acts as the primary configuration layer. It enforces C++ standard
+ * requirements, validates core revision integrity to prevent ODR violations,
  * and sanitizes the global environment by removing conflicting legacy macros.
  */
 
@@ -24,3 +24,9 @@
 
 // Pragma utility for diagnostic reporting
 #include <saburou/detail/macros/pragma.hpp> // IWYU pragma: keep
+
+#if !defined(SABUROU_PLATFORM_V1_SUPPRESS_DEPRECATION_MSG)
+SABUROU_MSG("saburou-platform v1 is DEPRECATED and enters maintenance mode.\n\
+Please migrate to v2. Define SABUROU_PLATFORM_V1_SUPPRESS_DEPRECATION_MSG to silence\n\
+this notice.")
+#endif

@@ -5,31 +5,31 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/detect.hpp>
-#include <saburou/platform/v2-alpha/os/family/types.hpp>
+#include <saburou/platform/v2/detect.hpp>
+#include <saburou/platform/v2/os/family/types.hpp>
 
 #include <format>
 
-namespace saburou::platform::v2_alpha::os {
+namespace saburou::platform::v2::os {
 
 /**
  * @brief Returns the current operating system family at compile-time.
  * @return The detected family_t value based on platform detection macros.
  */
 [[nodiscard]] consteval family_t family() {
-#if defined SABUROU_PLATFORM_V2_ALPHA_OS_WINDOWS
+#if defined SABUROU_PLATFORM_V2_OS_WINDOWS
     return family_t::windows;
-#elif defined SABUROU_PLATFORM_V2_ALPHA_OS_DARWIN
+#elif defined SABUROU_PLATFORM_V2_OS_DARWIN
     return family_t::darwin;
-#elif defined SABUROU_PLATFORM_V2_ALPHA_OS_BSD
+#elif defined SABUROU_PLATFORM_V2_OS_BSD
     return family_t::bsd;
-#elif defined SABUROU_PLATFORM_V2_ALPHA_OS_ANDROID
+#elif defined SABUROU_PLATFORM_V2_OS_ANDROID
     return family_t::android;
-#elif defined SABUROU_PLATFORM_V2_ALPHA_OS_WASM
+#elif defined SABUROU_PLATFORM_V2_OS_WASM
     return family_t::wasm;
-#elif defined SABUROU_PLATFORM_V2_ALPHA_OS_LINUX
+#elif defined SABUROU_PLATFORM_V2_OS_LINUX
     return family_t::linux;
-#elif defined SABUROU_PLATFORM_V2_ALPHA_OS_POSIX
+#elif defined SABUROU_PLATFORM_V2_OS_POSIX
     return family_t::posix;
 #else
     return family_t::unknown;
@@ -79,14 +79,14 @@ namespace saburou::platform::v2_alpha::os {
  */
 [[nodiscard]] consteval const char *family_name() { return to_family_name(family()); }
 
-} // namespace saburou::platform::v2_alpha::os
+} // namespace saburou::platform::v2::os
 
 /**
  * @brief std::formatter specialization for family_t.
  * Supported format specifiers: {} or {:s} for technical lowercase name, {:r} for qualified representation (e.g., "family_t::linux").
  * @note Use to_family_name for a human-readable representation (e.g., "Linux").
  */
-template <> struct std::formatter<saburou::platform::v2_alpha::os::family_t> {
+template <> struct std::formatter<saburou::platform::v2::os::family_t> {
     bool repr = false;
     constexpr auto parse(std::format_parse_context &ctx) {
         auto it = ctx.begin(), end = ctx.end();
@@ -97,8 +97,8 @@ template <> struct std::formatter<saburou::platform::v2_alpha::os::family_t> {
         return it;
     }
 
-    auto format(const saburou::platform::v2_alpha::os::family_t &f, std::format_context &ctx) const {
-        auto name = saburou::platform::v2_alpha::os::to_code_name(f);
+    auto format(const saburou::platform::v2::os::family_t &f, std::format_context &ctx) const {
+        auto name = saburou::platform::v2::os::to_code_name(f);
         return repr ? std::format_to(ctx.out(), "family_t::{}", name) : std::format_to(ctx.out(), "{}", name);
     }
 };

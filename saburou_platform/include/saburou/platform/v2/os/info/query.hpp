@@ -5,14 +5,14 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/detect.hpp>
-#include <saburou/platform/v2-alpha/os/info/types.hpp>
+#include <saburou/platform/v2/detect.hpp>
+#include <saburou/platform/v2/os/info/types.hpp>
 
-#if defined(SABUROU_PLATFORM_V2_ALPHA_POSIX_LIKE)
-#include <saburou/platform/v2-alpha/os/info/detail/posix.hpp>
+#if defined(SABUROU_PLATFORM_V2_POSIX_LIKE)
+#include <saburou/platform/v2/os/info/detail/posix.hpp>
 #endif
 
-namespace saburou::platform::v2_alpha::os {
+namespace saburou::platform::v2::os {
 
 /**
  * @brief Retrieves detailed information about the current operating system kernel.
@@ -21,10 +21,10 @@ namespace saburou::platform::v2_alpha::os {
  * @note If the current platform is unsupported, it returns a default-initialized info_t (0.0.0, "unknown").
  */
 [[nodiscard]] inline info_t info() {
-#if defined(SABUROU_PLATFORM_V2_ALPHA_POSIX_LIKE)
+#if defined(SABUROU_PLATFORM_V2_POSIX_LIKE)
     // Delegate to POSIX implementation (uname)
     return posix::info();
-#elif defined(SABUROU_PLATFORM_V2_ALPHA_OS_WINDOWS)
+#elif defined(SABUROU_PLATFORM_V2_OS_WINDOWS)
     // Future Win32 adapter (e.g., RtlGetVersion)
     return info_t{};
 #else
@@ -33,4 +33,4 @@ namespace saburou::platform::v2_alpha::os {
 #endif
 }
 
-} // namespace saburou::platform::v2_alpha::os
+} // namespace saburou::platform::v2::os

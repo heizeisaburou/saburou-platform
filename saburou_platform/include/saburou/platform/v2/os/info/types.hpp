@@ -5,12 +5,12 @@
 
 #pragma once
 
-#include <saburou/platform/v2-alpha/core.hpp>
+#include <saburou/platform/v2/core.hpp>
 
 #include <format>
 #include <string>
 
-namespace saburou::platform::v2_alpha::os {
+namespace saburou::platform::v2::os {
 
 /**
  * @brief Represents a semantic version of the operating system.
@@ -29,13 +29,13 @@ struct info_t {
     std::string release_str; ///< Raw release or build string from the system
 };
 
-} // namespace saburou::platform::v2_alpha::os
+} // namespace saburou::platform::v2::os
 
 /**
  * @brief std::formatter specialization for version_t.
  * Supported format specifiers: {} or {:s} for "M.m.p", {:r} for "version(major=M, minor=m, patch=p)".
  */
-template <> struct std::formatter<saburou::platform::v2_alpha::os::version_t> {
+template <> struct std::formatter<saburou::platform::v2::os::version_t> {
     bool repr = false;
 
     constexpr auto parse(std::format_parse_context &ctx) {
@@ -52,7 +52,7 @@ template <> struct std::formatter<saburou::platform::v2_alpha::os::version_t> {
         return ++it;
     }
 
-    auto format(const saburou::platform::v2_alpha::os::version_t &v, std::format_context &ctx) const {
+    auto format(const saburou::platform::v2::os::version_t &v, std::format_context &ctx) const {
         if (repr) {
             return std::format_to(
                 ctx.out(), "version(major={}, minor={}, patch={})", v.major, v.minor, v.patch);
@@ -65,7 +65,7 @@ template <> struct std::formatter<saburou::platform::v2_alpha::os::version_t> {
  * @brief std::formatter specialization for info_t.
  * Supported format specifiers: {} or {:s} for standard output, {:r} for detailed representation.
  */
-template <> struct std::formatter<saburou::platform::v2_alpha::os::info_t> {
+template <> struct std::formatter<saburou::platform::v2::os::info_t> {
     bool repr = false;
 
     constexpr auto parse(std::format_parse_context &ctx) {
@@ -82,7 +82,7 @@ template <> struct std::formatter<saburou::platform::v2_alpha::os::info_t> {
         return ++it;
     }
 
-    auto format(const saburou::platform::v2_alpha::os::info_t &t, std::format_context &ctx) const {
+    auto format(const saburou::platform::v2::os::info_t &t, std::format_context &ctx) const {
         if (repr) {
             return std::format_to(
                 ctx.out(), "os_info(version={:r}, release_str={})", t.version, t.release_str);
