@@ -1,8 +1,8 @@
 # 📖 saburou-platform: Architecture Decision Records (ADR)
 
-This document records the technical and maintenance decisions of saburou-platform. These rules
-**prioritize the user**, ensuring that saburou-platform is powerful, easily usable, and does not stop working
-from one day to the next.
+This document records the technical and maintenance decisions of saburou-platform. These rules **prioritize the
+user**, ensuring that saburou-platform is powerful, easily usable, and does not stop working from one day to
+the next.
 
 ---
 
@@ -12,8 +12,8 @@ from one day to the next.
 
 Wed 2026-02-18 12:30:44 v1
 
-- **Decision**: Each major version of the API resides in its own physical folder (e.g., `v1/`) with its respective
-  umbrella file (`v1.hpp`).
+- **Decision**: Each major version of the API resides in its own physical folder (e.g., `v1/`) with its
+  respective umbrella file (`v1.hpp`).
 - **Synchronization**: If the internal behavior changes but the API remains, the
   `SABUROU_PLATFORM_VX_CORE_REVISION` macro is incremented.
 - **Protection**: Revision sentinels are used that trigger a `#error` if different core revisions are attempted
@@ -25,11 +25,11 @@ Wed 2026-02-18 12:30:44 v1
 
 Wed 2026-02-18 12:30:44 v1
 
-- **Context**: Macros predefined by old compilers (such as `linux` or `unix`) contaminate the global space
-  and break modern enums or namespaces.
+- **Context**: Macros predefined by old compilers (such as `linux` or `unix`) contaminate the global space and
+  break modern enums or namespaces.
 - **Decision**: saburou-platform applies an `#undef` to these macros by default when loading the core.
-- **Impact**: Allows using clean and modern names like `os::type_t::linux`. If the user requires these
-  macros back for legacy code, the `env/recover.hpp` header is provided.
+- **Impact**: Allows using clean and modern names like `os::type_t::linux`. If the user requires these macros
+  back for legacy code, the `env/recover.hpp` header is provided.
 
 ### (ADR-3) Philosophy of the 99% and Escape Valves
 
@@ -37,11 +37,11 @@ Wed 2026-02-18 12:30:44 v1
 
 - **Decision**: The library is designed to elegantly and automatically cover 99% of common use cases in
   platform detection.
-- **Overrides**: The user is not blocked in the remaining 1%. To the extent possible (while viable and
-  making sense), versions implement manual _overrides_ (such as defining `SABUROU_PLATFORM_DEFINED = 1`)
-  to disable detection. This implies that certain directives will have to be defined by hand under certain
-  builds with manual detection by the user + possible feature breakages, but at least some possibility is
-  granted to the user during the evolution of the project.
+- **Overrides**: The user is not blocked in the remaining 1%. To the extent possible (while viable and making
+  sense), versions implement manual _overrides_ (such as defining `SABUROU_PLATFORM_DEFINED = 1`) to disable
+  detection. This implies that certain directives will have to be defined by hand under certain builds with
+  manual detection by the user + possible feature breakages, but at least some possibility is granted to the
+  user during the evolution of the project.
 
 ### (ADR-4) Evolution of the C++ Standard
 
@@ -63,9 +63,9 @@ Wed 2026-02-18 12:30:44 v1
 
 - **Decision**: Faced with the detection of a critical security flaw, saburou-platform's commitment is to act
   with the maximum possible speed, giving it absolute priority over the development of new features.
-- **Realism**: Effective resolution will depend on the technical complexity and available knowledge. **Community
-  collaboration is actively encouraged** to audit, report, and patch flaws in a **transparent** and professional
-  manner.
+- **Realism**: Effective resolution will depend on the technical complexity and available knowledge.
+  **Community collaboration is actively encouraged** to audit, report, and patch flaws in a **transparent** and
+  professional manner.
 
 ### (ADR-6) In-situ Changelog
 
@@ -86,17 +86,17 @@ Wed 2026-02-18 12:30:44 v1
 
 ## ⏳ Level 3: Life Cycle and Retirement
 
-### (ADR-8) Alpha Validation Phase
+### (ADR-10) Direct Publication and Production Stability
 
-Wed 2026-02-18 12:30:44 v1
+Thu 2026-02-19 20:10:00 v1
 
-- **Decision**: Every new major version of the API will be published under the `-alpha` suffix (e.g., `v2-alpha`)
-  for at least a period between 15 and 60 days.
-- **Objective**: To validate the design in real environments before declaring the version as `stable` and freezing
-  definitively its API and/or giving the community the opportunity to test features before their implementation.
-- **It is assumed**: Alpha versions can change their api at any time, be incomplete, be just an incomplete feature,
-  or even be aborted and permanently deleted without prior notice or guarantee, and therefore, the user will not
-  use them in production.
+- **Supersedes**: [(ADR-8) Alpha Validation Phase](#adr-8-alpha-validation-phase)
+- **Decision**: The mandatory alpha validation period (the `-alpha` suffix) is removed. Major versions may be
+  published as `stable` immediately.
+- **Rationale**: The 15-60 day lockout period is incompatible with the need for immediate production deployment
+  of critical design improvements. Stability is guaranteed through the physical isolation defined in
+  **(ADR-1)**.
+- **Impact**: Enables agile project evolution without compromising the integrity of previous versions.
 
 ### (ADR-9) Support and Transition to Legacy-Archive
 
@@ -108,7 +108,26 @@ Wed 2026-02-18 12:30:44 v1
 - **Legacy-Archive**: A version is physically moved to the archive folder (and removed from the main branch)
   **2 years after** having reached its "End of Support".
 - **Impact**:
-    - A predictable and extended life cycle is guaranteed, protecting users from premature obsolescence
-      even in the face of frequent releases of new versions.
+    - A predictable and extended life cycle is guaranteed, protecting users from premature obsolescence even in
+      the face of frequent releases of new versions.
     - There will be times when we will be dragging very old code and the number of files in the project becomes
       absurdly large.
+
+---
+
+## 📜 Superseded Decisions History
+
+### (ADR-8) Alpha Validation Phase
+
+Wed 2026-02-18 12:30:44 v1
+
+- **Superseded by**:
+  [(ADR-10) Direct Publication and Production Stability](#adr-10-direct-publication-and-production-stability)
+- **Decision**: Every new major API version will be published under the `-alpha` suffix (e.g., `v2-alpha`) for
+  a period of at least 15 to 60 days.
+- **Objective**: To validate the design in real-world environments before declaring the version as `stable` and
+  definitively freezing its API, and/or providing the community with the opportunity to test features prior to
+  implementation.
+- **Assumptions**: Alpha versions may change their API at any time, be incomplete, feature-limited, or even be
+  aborted and permanently removed without prior notice or warranty; therefore, the user shall not use them in
+  production.

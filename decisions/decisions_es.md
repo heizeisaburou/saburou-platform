@@ -86,17 +86,16 @@ Wed 2026-02-18 12:30:44 v1
 
 ## ⏳ Nivel 3: Ciclo de Vida y Retirada
 
-### (ADR-8) Fase Alpha de Validación
+### (ADR-10) Publicación Directa y Estabilidad Productiva
 
-Wed 2026-02-18 12:30:44 v1
+Thu 2026-02-19 20:10:00 v1
 
-- **Decisión**: Toda nueva versión mayor de la API se publicará bajo el sufijo `-alpha` (ej. `v2-alpha`)
-  durante al menos un periodo entre 15 y 60 días.
-- **Objetivo**: Validar el diseño en entornos reales antes de declarar la versión como `stable` y congelar
-  definitivamente su API y/o dar la oportunidad a la comunidad de probar features antes de su implementación.
-- **Se asume**: Las versiones alpha pueden cambiar en cualquier momento su api, ser incompletas, ser solo
-  característica incompleta, o incluso ser abortadas y eliminadas permanentemente sin previo aviso ni garantía,
-  y por tanto, el usuario no las va a utilizar en producción.
+- **Supercede a**: [(ADR-8) Fase Alpha de Validación](#adr-8-fase-alpha-de-validación)
+- **Decisión**: Se elimina la obligatoriedad del periodo de validación alpha (sufijo `-alpha`). Las versiones
+  mayores pueden publicarse como `stable` de forma inmediata.
+- **Razón**: El bloqueo de 15-60 días resulta incompatible con la necesidad de despliegue en producción de
+  mejoras críticas de diseño. La estabilidad se garantiza mediante el aislamiento físico de la **(ADR-1)**.
+- **Impacto**: Permite la evolución ágil del proyecto sin comprometer la integridad de versiones anteriores.
 
 ### (ADR-9) Soporte y Transición a Legacy-Archive
 
@@ -113,3 +112,21 @@ Wed 2026-02-18 12:30:44 v1
       prematura incluso ante lanzamientos frecuentes de nuevas versiones.
     - Habrá epocas en las que estaremos arrastrando código muy antiguo y la cantidad de archivos en el proyecto
       se vuelva absurdamente grande.
+
+---
+
+## 📜 Historial de Decisiones Supercedidas
+
+### (ADR-8) Fase Alpha de Validación
+
+Wed 2026-02-18 12:30:44 v1
+
+- **Supercedido por**:
+  [(ADR-10) Publicación Directa y Estabilidad Productiva](#adr-10-publicación-directa-y-estabilidad-productiva)
+- **Decisión**: Toda nueva versión mayor de la API se publicará bajo el sufijo `-alpha` (ej. `v2-alpha`)
+  durante al menos un periodo entre 15 y 60 días.
+- **Objetivo**: Validar el diseño en entornos reales antes de declarar la versión como `stable` y congelar
+  definitivamente su API y/o dar la oportunidad a la comunidad de probar features antes de su implementación.
+- **Se asume**: Las versiones alpha pueden cambiar en cualquier momento su api, ser incompletas, ser solo
+  característica incompleta, o incluso ser abortadas y eliminadas permanentemente sin previo aviso ni garantía,
+  y por tanto, el usuario no las va a utilizar en producción.
