@@ -1,6 +1,6 @@
 #pragma once
 
-#include <saburou/macros/pragma.hpp> // IWYU pragma: keep
+#include <saburou/detail/macros/pragma.hpp> // IWYU pragma: keep
 
 // Input de ejemplo
 // #define SABUROU_PLATFORM_MIN_CPP_VER 201703L
