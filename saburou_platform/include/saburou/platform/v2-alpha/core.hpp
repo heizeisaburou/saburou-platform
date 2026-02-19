@@ -17,7 +17,7 @@
 /** @brief Minimum C++ standard required for this version. */
 #define SABUROU_PLATFORM_MIN_CPP_VER 202302L
 #define SABUROU_PLATFORM_MIN_CPP_NAME "C++23"
-#include <saburou/macros/cppxx_guard.hpp> // IWYU pragma: keep
+#include <saburou/detail/macros/cppxx_guard.hpp> // IWYU pragma: keep
 
 // Necessary environment cleanup (undefining linux, unix, etc.)
 #include <saburou/platform/v2-alpha/env/cleanup.hpp> // IWYU pragma: keep

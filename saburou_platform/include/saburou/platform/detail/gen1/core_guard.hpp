@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include <saburou/macros/pragma.hpp>
+#include <saburou/detail/macros/pragma.hpp>
 
 // Example Input
 // #define SABUROU_PLATFORM_CORE_REVISION_LOCAL 1
