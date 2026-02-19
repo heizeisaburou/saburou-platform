@@ -23,4 +23,4 @@
 #include <saburou/platform/v1/env/cleanup.hpp> // IWYU pragma: keep
 
 // Pragma utility for diagnostic reporting
-#include <saburou/macros/pragma.hpp> // IWYU pragma: keep
+#include <saburou/detail/macros/pragma.hpp> // IWYU pragma: keep
