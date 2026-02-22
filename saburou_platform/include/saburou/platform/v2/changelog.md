@@ -1,6 +1,6 @@
 # Changelog - saburou-platform v2
 
-## [2.0.0-beta.2] - Thu 2026-02-19
+## [0.2.0-beta] - Thu 2026-02-19
 
 ### Added
 
